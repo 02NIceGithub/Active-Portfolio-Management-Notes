@@ -1,0 +1,129 @@
+%% Written by: Haifeng XU
+%% email: 78112407@qq.com
+
+
+\documentclass[12pt,a4paper]{report}
+\usepackage{amsmath}
+
+\title{A Solution Manual and Notes for: \\
+\tt{Active portfolio management} }
+\author{\sc{Haifeng XU} \\ Email: {78112407@qq.com}}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+%% ------------------------------------------------------ %%
+\chapter{Introduction}
+%% ------------------------------------------------------ %%
+
+The reason why I wrote this manual is that I wanna share my ideas about
+active portfolio management.
+
+
+%% ------------------------------------------------------ %%
+\chapter{Consensus Expected Return}
+%% ------------------------------------------------------ %%
+
+\section{Problems}
+
+
+1. $$ 1.05 * (-5\%) = - 5.25\% $$
+
+2. $$ 1.05 * 7\%  =  7.35 \% $$
+
+3.
+
+\begin{align*}
+    R_a &= \beta_a R_M + \theta_a \\
+    R_b &= \beta_b R_M + \theta_b \\
+    Cov( R_M , \theta_a ) &= 0 \;,
+\end{align*}
+so we have
+\begin{align*}
+    \text{Cov}( R_a , R_b ) &= \beta_a \beta_b \text{Cov}( R_M, R_M ) \\
+    &= \beta_a \beta_b \sigma_M^2
+\end{align*}
+
+\section{Notes}
+
+The optimization problem can be described as follows:
+\begin{align}
+    \min &\quad \frac{1}{2} h^\top V h \\
+    s.t. &\quad h^\top a = 1
+\end{align}
+
+We are trying to minimize the function $L( h, \theta)$:
+\begin{align*}
+    L( h, \theta ) &= \frac{1}{2} h^\top V h - \theta ( h^\top a - 1) \\
+    &= \frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N h_i \cdot v_{ij} \cdot hj -
+        \theta \left( \sum_{k=1}^N h_k a_k - 1 \right).
+\end{align*}
+
+The partial derives of L are
+\begin{align*}
+    \frac{\partial L}{\partial \theta}  = 0 \;, \qquad
+    \quad
+    \frac{\partial L}{\partial h_i}     = 0 \;, \; ( i = 1, \ldots, N )
+\end{align*}
+
+which are equvalent to
+\begin{align*}
+    \sum_{k=1}^N h_k a_k - 1                = 0 \;, \qquad
+    \sum_{j=1}^N v_{ij} h_j - \theta a_i    = 0 \;.  \; ( i = 1, \ldots, N )
+\end{align*}
+
+The quations can be rewritten as follows:
+\begin{align}
+    a^\top h  - 1       = 0 \;, \qquad
+    V h - \theta a  = 0 \;.
+\end{align}
+
+Thus we have,
+\begin{align*}
+    h           &= \theta V^{-1} a \\
+    a^\top h    &= \theta a^\top V^{-1} a \\
+    1           &= \theta a^\top V^{-1} a \;.
+\end{align*}
+
+As a result,
+\begin{align*}
+    \theta = \frac{1}{ a^\top V^{-1} a} \;, \qquad
+    h      = \frac{V^{-1} a}{ a^\top V^{-1} a} \;.
+\end{align*}
+
+Remarks: If we are minimizing $h^T V h$ instead of $\frac{1}{2} h^T V h$,
+we still get the same $h$.
+However, $\theta$ should be twice as big as its old one.
+
+Remarks: Be careful with the technique of \emph{Langrage multiplier}.
+You may wonder why it works.
+What if we are trying to maximize $\frac{1}{2} h^T V h$?
+Is the method still works?
+The answer is \emph{no}, fortunately.
+%% TODO: list a book refer to Langrage multiplier.
+Please refer to ... for more details.
+
+
+%% ------------------------------------------------------ %%
+\chapter{Risk}
+%% ------------------------------------------------------ %%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
